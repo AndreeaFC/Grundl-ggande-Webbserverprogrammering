@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace DungeonsOfDoom
 {
-    class Room
+    class Item
     {
-        public Monster MonsterInRoom { get; set; }
-        public Item ItemInRoom { get; set; }
+        public Item(string name)
+        {
+            Name = name;
+        }
+        public string Name { get; set; }
     }
 }
