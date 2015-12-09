@@ -6,12 +6,28 @@ using System.Threading.Tasks;
 
 namespace DungeonsOfDoom
 {
-    class Item
+    abstract class Item
     {
         public Item(string name)
         {
             Name = name;
         }
         public string Name { get; set; }
+    }
+
+    class Potion : Item
+    {
+        public Potion(string name) : base(name)
+        {
+
+        }
+    }
+
+    class Weapon : Item
+    {
+        public Weapon(string name) : base(name)
+        {
+
+        }
     }
 }
