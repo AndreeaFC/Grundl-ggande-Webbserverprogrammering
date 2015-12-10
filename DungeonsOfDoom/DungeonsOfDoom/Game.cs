@@ -25,19 +25,13 @@ namespace DungeonsOfDoom
 				//player.Health -= 10; //Spelaren blöder
 			} while (player.Health > 0); // Så länge spelaren lever
 
+			Console.WriteLine("Game over");
 		}
 
 		private void CreateMap() {
 			for (int y = 0; y < mapHeight; y++) {
 				for (int x = 0; x < mapWidth; x++) {
-					//Room room = new Room();
-					//rooms[x, y] = room;
 					rooms[x, y] = new Room();
-
-
-					// Lägg till monster
-					//if (x == 1 && y == 1)
-					//    room.MonsterInRoom = new Monster("Ogre", 40, 20);
 				}
 			}
 			PlaceItemInRandomRoom(new Potion("Healing potion"));
@@ -114,10 +108,19 @@ namespace DungeonsOfDoom
 
 				if (currentRoom.ItemInRoom != null) {
 					player.Backpack.Add(currentRoom.ItemInRoom);
+					currentRoom.ItemInRoom.GetPickedUp(player);
 					currentRoom.ItemInRoom = null;
-				}	
+				}
+
+				if (currentRoom.MonsterInRoom != null) {
+					player.Fight(currentRoom.MonsterInRoom);
+					currentRoom.MonsterInRoom.Fight(player);
+					if (currentRoom.MonsterInRoom.Health <= 0) {
+						currentRoom.MonsterInRoom = null;
+					}
+				}
+
 			}
 		}
 	}
 }
-

@@ -13,6 +13,8 @@ namespace DungeonsOfDoom
             Name = name;
         }
         public string Name { get; set; }
+
+		public abstract void GetPickedUp(Player player);
     }
 
     class Potion : Item
@@ -21,7 +23,12 @@ namespace DungeonsOfDoom
         {
 
         }
-    }
+		public override void GetPickedUp(Player player) {
+			player.Health += 20;
+			player.AttackStrength += 10;
+		}
+
+	}
 
     class Weapon : Item
     {
@@ -29,5 +36,9 @@ namespace DungeonsOfDoom
         {
 
         }
-    }
+		public override void GetPickedUp(Player player) {
+			player.Health += 10;
+			player.AttackStrength += 30;
+		}
+	}
 }

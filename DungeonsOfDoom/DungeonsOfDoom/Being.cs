@@ -18,7 +18,11 @@ namespace DungeonsOfDoom
         public string Name { get; set; }
         public int Health { get; set; }
         public int AttackStrength { get; set; }
-    }
+
+		public virtual void Fight(Being opponent) {
+			opponent.Health -= 10;
+		}
+	}
 	
 
     abstract class Monster : Being
@@ -46,7 +50,10 @@ namespace DungeonsOfDoom
         {
 
         }
-    }
+		public override void Fight(Being opponent) {
+			opponent.Health -= 20;
+		}
+	}
 
     class Cyclop : Monster
     {
